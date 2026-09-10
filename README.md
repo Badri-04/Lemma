@@ -7,25 +7,45 @@ Lemma is a lightweight Python project for experimenting with retrieval-augmented
 This repository contains a minimal starter structure for:
 
 - downloading and preparing document data
-- building a simple RAG prototype over research papers
+- indexing research text into chunks
+- retrieving relevant passages with embeddings
+- grounding a language model answer in retrieved context
 
 ## Project structure
 
-- `main.py` - entry point for the project
+- `main.py` - general project entry point
+- `src/basic_rag.py` - initial RAG implementation using chunking, embedding similarity, and grounded generation
 - `data/` - datasets and corpus assets
 - `scripts/` - helper scripts for data collection
 - `pyproject.toml` - Python project configuration and dependencies
 
 ## Getting started
 
-Before running the project, fetch the required arXiv documents:
+1. Install dependencies:
+
+```bash
+uv sync
+```
+
+2. Download the required arXiv source documents:
 
 ```bash
 python scripts/get_arxiv_pdfs.py
 ```
 
-This script downloads the documents needed for the local dataset used by the project.
+3. Start a local Ollama server with the required models available (the starter script uses `nomic-embed-text` and `llama3.1`):
+
+```bash
+ollama pull nomic-embed-text
+ollama pull llama3.1
+```
+
+4. Run the initial RAG prototype:
+
+```bash
+python src/basic_rag.py
+```
 
 ## Notes
 
-This is a starter repository and is intended to be expanded as the project grows.
+This is a starter repository intended to be expanded into a more complete retrieval and generation pipeline.
